@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tweetapp-service
+spec:
+  type: NodePort  # Change to LoadBalancer or ClusterIP as needed
+  selector:
+    app: tweetapp
+  ports:
+  - port: 80
+    targetPort: 8000
+    protocol: TCP

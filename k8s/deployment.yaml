@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tweetapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tweetapp
+  template:
+    metadata:
+      labels:
+        app: tweetapp
+    spec:
+      containers:
+      - name: tweetapp
+        image: sanket245/django-api:v1
+        ports:
+        - containerPort: 8000
