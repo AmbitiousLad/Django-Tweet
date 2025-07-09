@@ -1,8 +1,6 @@
 pipeline:
   name: Django Tweet CI
   identifier: Django_Tweet_CI
-  projectIdentifier: AmbitiousLad
-  orgIdentifier: <YOUR_ORG_ID>
   tags: {}
   properties:
     ci:
