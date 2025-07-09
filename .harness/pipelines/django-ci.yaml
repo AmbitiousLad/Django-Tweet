@@ -1,0 +1,48 @@
+pipeline:
+  name: Django Tweet CI
+  identifier: Django_Tweet_CI
+  projectIdentifier: <YOUR_PROJECT_ID>
+  orgIdentifier: <YOUR_ORG_ID>
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: AmbitiousLad
+        repoName: Django-Tweet
+        build: <+input>
+  stages:
+    - stage:
+        name: CI Build
+        identifier: CI_Build
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  name: Install Dependencies
+                  identifier: Install_Dependencies
+                  type: Run
+                  spec:
+                    shell: Bash
+                    command: |
+                      python -m venv venv
+                      source venv/bin/activate
+                      pip install --upgrade pip
+                      pip install -r requirements.txt
+
+              - step:
+                  name: Run Tests
+                  identifier: Run_Tests
+                  type: Run
+                  spec:
+                    shell: Bash
+                    command: |
+                      source venv/bin/activate
+                      python manage.py test
